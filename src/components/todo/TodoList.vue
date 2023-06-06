@@ -9,6 +9,7 @@ defineProps<{todos: Todo[]}>();
 const emit = defineEmits<{
     add: [todo: Todo],
     change: [todo: Todo],
+    delete: [todo: Todo],
 }>();
 
 const nextTodoName = ref<string>('');
@@ -29,11 +30,19 @@ function addTodo() {
 <template>
         <p class="h2 mt-4 mb-3">Things to do</p>
     <div>
-        <TodoItem v-for="todo in todos" :key="todo.id" :todo="todo" @change="e => emit('change', e )" />
+        <TodoItem 
+            v-for="todo in todos" 
+            :key="todo.id" 
+            :todo="todo"
+             @change="e => emit('change', e )" 
+             @delete="e => emit('delete', e )"
+        />
 
-        <div class="input-group">
-            <input type="text" v-model="nextTodoName" class="form-control" placeholder="Name" />
-            <button @click="addTodo" type="button" class="btn btn-primary">Add</button>
-        </div>
+        <form @submit.prevent="addTodo">
+            <div class="input-group">
+                <input type="text" v-model="nextTodoName" class="form-control" placeholder="Name" />
+                <button type="submit" class="btn btn-primary">Add</button>
+            </div>
+        </form>
     </div>
 </template>

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import PomodoroView from "@/components/pomodoro/Pomodoro.vue";
 import PomodoroControls from '@/components/pomodoro/PomodoroControls.vue';
-import TodoList from '@/components/pomodoro/TodoList.vue';
+import TodoList from '@/components/todo/TodoList.vue';
 import { computed, onMounted, onUnmounted } from "vue";
 
 import { usePomodoroStore } from "@/stores/pomodoro";
@@ -46,6 +46,11 @@ onUnmounted(() =>  {
             @pause="e => pomodoroTimer.stop()" @next="e => pomodoroTimer.next()"
             @selectTodoById="todoId => pomodoroStore.update({ ...pomodoroStore.pomodoro, todoId })" />
 
-        <TodoList :todos="todoStore.getAll()" @add="todoStore.add" @change="todoStore.update" />
+        <TodoList 
+            :todos="todoStore.getAll()"
+            @add="todoStore.add" 
+            @change="todoStore.update"
+            @delete="todoStore.remove"
+        />
     </div>
 </template>
