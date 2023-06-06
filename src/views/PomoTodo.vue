@@ -9,8 +9,8 @@ import { useScheduleStore } from "@/stores/schedule";
 import { useTodoStore } from "@/stores/todo";
 import { useHistoryStore } from "@/stores/history";
 
-import { PomodoroTimer } from "@/business/PomodoroTimer";
-import { NotificationManager } from "@/business/NotificationManager";
+import { PomodoroTimer } from "@/business/pomodoro-timer.js";
+import { NotificationManager } from "@/business/notification-manager.js";
 
 const pomodoroStore = usePomodoroStore();
 const scheduleStore = useScheduleStore();

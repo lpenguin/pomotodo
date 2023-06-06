@@ -1,10 +1,10 @@
 import { fromScheduleItem, type Pomodoro } from "@/models/pomodoro";
-import { Timer } from "./Timer";
+import { Timer } from "@/utils/timer";
 import type { PomodoroStore } from "@/stores/pomodoro";
 import type { TodoStore } from "@/stores/todo";
 import type { ScheduleStore } from "@/stores/schedule";
 import type { HistoryStore } from "@/stores/history";
-import type { NotificationManager } from "./NotificationManager";
+import type { NotificationManager } from "./notification-manager";
 
 interface Options {
     pomodoroStore: PomodoroStore;
