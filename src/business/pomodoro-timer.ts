@@ -28,37 +28,17 @@ export class PomodoroTimer {
         this.scheduleStore = options.scheduleStore;
         this.historyStore = options.historyStore;
         this.notificationManager = options.notificationManager;
+    }
+
+    public unmount() {
+        this.timer.stop();
+    }
+
+    public mount() {
         this.notificationManager.requestPermission().then(granted => {
             console.log('Notification permission granted: ' + granted);
         });
-    }
 
-    private update(): void {
-        const oldPomodoro = this.pomodoroStore.pomodoro;
-
-        if (oldPomodoro.lastUpdateTime === undefined) {
-            return
-        }
-
-        const newUpdateDate = Date.now();
-        const oldUpdateTime = oldPomodoro.lastUpdateTime;
-
-        const elapsed = (newUpdateDate - oldUpdateTime) / 1000;
-        const newPomodoro: Pomodoro = {
-            ...oldPomodoro,
-            timeElapsed: Math.min(oldPomodoro.time, oldPomodoro.timeElapsed + elapsed),
-            lastUpdateTime: newUpdateDate,
-        };
-
-        this.pomodoroStore.update(newPomodoro);
-
-        if (newPomodoro.timeElapsed >= newPomodoro.time) {
-            const nextPomodoro = this.next();
-            this.notificationManager.show('Pomodoro finished', nextPomodoro.title);
-        }
-    }
-
-    public initialize() {
         if (this.pomodoroStore.pomodoro.isStarted) {
             this.update();
             this.timer.start();
@@ -115,5 +95,30 @@ export class PomodoroTimer {
         }
 
         return nextPomodoro;
+    }
+
+    private update(): void {
+        const oldPomodoro = this.pomodoroStore.pomodoro;
+
+        if (oldPomodoro.lastUpdateTime === undefined) {
+            return
+        }
+
+        const newUpdateDate = Date.now();
+        const oldUpdateTime = oldPomodoro.lastUpdateTime;
+
+        const elapsed = (newUpdateDate - oldUpdateTime) / 1000;
+        const newPomodoro: Pomodoro = {
+            ...oldPomodoro,
+            timeElapsed: Math.min(oldPomodoro.time, oldPomodoro.timeElapsed + elapsed),
+            lastUpdateTime: newUpdateDate,
+        };
+
+        this.pomodoroStore.update(newPomodoro);
+
+        if (newPomodoro.timeElapsed >= newPomodoro.time) {
+            const nextPomodoro = this.next();
+            this.notificationManager.show('Pomodoro finished', nextPomodoro.title);
+        }
     }
 }

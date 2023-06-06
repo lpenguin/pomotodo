@@ -2,7 +2,7 @@
 import PomodoroView from "@/components/pomodoro/Pomodoro.vue";
 import PomodoroControls from '@/components/pomodoro/PomodoroControls.vue';
 import TodoList from '@/components/pomodoro/TodoList.vue';
-import { computed } from "vue";
+import { computed, onMounted, onUnmounted } from "vue";
 
 import { usePomodoroStore } from "@/stores/pomodoro";
 import { useScheduleStore } from "@/stores/schedule";
@@ -27,31 +27,25 @@ const pomodoroTimer = new PomodoroTimer({
     notificationManager: new NotificationManager()
 });
 
+
+
+onMounted(() => {
+    pomodoroTimer.mount();
+});
+
+onUnmounted(() =>  {
+    pomodoroTimer.unmount();
+});
 </script>
 
 <template>
-    <div class="container-sm">
-        <div class="row">
-            <div class="col-sm-5">
-                <PomodoroView :pomodoro="pomodoroStore.pomodoro" />
-               
-                <PomodoroControls
-                    :pomodoro="pomodoroStore.pomodoro"
-                    :active-todos="activeTodos"
+    <div class="container" style="max-width: 40rem;">
+        <PomodoroView :pomodoro="pomodoroStore.pomodoro" />
 
-                    @start="e => pomodoroTimer.start()"
-                    @pause="e => pomodoroTimer.stop()"
-                    @next="e => pomodoroTimer.next()"
-                    @selectTodoById="todoId => pomodoroStore.update({...pomodoroStore.pomodoro, todoId})"
-                />
+        <PomodoroControls :pomodoro="pomodoroStore.pomodoro" :active-todos="activeTodos" @start="e => pomodoroTimer.start()"
+            @pause="e => pomodoroTimer.stop()" @next="e => pomodoroTimer.next()"
+            @selectTodoById="todoId => pomodoroStore.update({ ...pomodoroStore.pomodoro, todoId })" />
 
-                <TodoList 
-                    :todos="todoStore.getAll()" 
-                    @add="todoStore.add" 
-                    @change="todoStore.update" 
-                />
-            </div>
-        </div>
-
+        <TodoList :todos="todoStore.getAll()" @add="todoStore.add" @change="todoStore.update" />
     </div>
 </template>
