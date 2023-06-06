@@ -44,7 +44,6 @@ function getButtonState(): PrimaryButtonState {
 <template>
     <div class="input-group mb-3 mt-3">
         <select class="form-select form-select-sm fs-4"
-            v-bind:disabled="props.pomodoro.isStarted"
             @change="emit('selectTodoById', ($event.target as HTMLSelectElement).value)">
             <option></option>
             <option v-for="todo in activeTodos" v-bind:key="todo.id" v-bind:selected="todo.id === pomodoro.todoId"
