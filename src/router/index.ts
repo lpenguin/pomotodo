@@ -9,19 +9,31 @@ const router = createRouter({
     {
       path: '/',
       name: 'todos',
-      component: PomoTodo
+      component: PomoTodo,
+      meta: {
+        title: 'PomoTODO'
+      }
     },
     {
       path: '/history',
       name: 'history',
-      component: HistoryView
+      component: HistoryView, 
+      meta: {
+        title: 'History'
+      }
     },
     {
       path: '/summaries',
       name: 'summaries',
-      component: SummaryView
+      component: SummaryView,
+      meta: {
+        title: 'Summaries'
+      }
     }
   ]
 })
-
+router.beforeEach((to, from, next) => {
+  document.title = to.meta.title as string|undefined ?? 'PomoTODO';
+  next();
+});
 export default router
