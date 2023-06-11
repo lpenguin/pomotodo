@@ -68,7 +68,6 @@ function getSummaryItems(): DaySummary[] {
                         </tr>
                     </tbody>
                 </table>
-                <hr />
             </div>
 
         </div>
