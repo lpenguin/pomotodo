@@ -49,22 +49,14 @@ function onFormSubmit() {
           v-model="editedTodo.estimatedPomodoros">
       </div>
       <div class="col-12">
-        <div class="form-check">
-          <input class="form-check-input" type="checkbox" id="isDoneCheck" v-model="editedTodo.isDone">
-          <label class="form-check-label" for="isDoneCheck">
-            Is Done
-          </label>
-        </div>
-      </div>
-      <div class="col-12">
         <div class="row  justify-content-between">
-          <div class="col-2">
-            <button type="submit" class="btn btn-primary">Save</button>
-          </div>
           <div class="col-2">
             <button type="button" class="btn btn-danger" @click="() => emit('delete', todo)">
               Delete
             </button>
+          </div>
+          <div class="col-2">
+            <button type="submit" class="btn btn-primary">Save</button>
           </div>
         </div>
       </div>

@@ -18,19 +18,22 @@ const emit = defineEmits<{
 
 <template>
     <div class="row align-items-center">
-        <div class="col-md-8">
+        <div class="col-1" style="width: 0;">
             <input class="form-check-input" type="checkbox" v-model="viewedTodo.isDone"
                 @input="emit('change', viewedTodo)" />
-            &nbsp;
-            <span v-if="todo.isDone">
-                <del>{{ todo.name }}</del>
-            </span>
-            <span v-else>{{ todo.name }}</span>
         </div>
-        <div class="col-md-4 text-end">
+        <div class="col-8">
+            <span :class="{
+                'text-decoration-line-through': todo.isDone,
+                'text-secondary': todo.isDone
+            }">
+                {{ todo.name }}
+            </span>
+        </div>
+        <div class="col-3 text-end">
             <span class="me-3">{{ todo.pomodoros }} / {{ todo.estimatedPomodoros }}</span>
 
-            <button class="btn btn-secondary btn-sm" @click="() => emit('edit')">
+            <button class="btn btn-secondary btn-sm align-items-right" @click="() => emit('edit')">
                 <i class="bi bi-pencil"></i>
             </button>
         </div>

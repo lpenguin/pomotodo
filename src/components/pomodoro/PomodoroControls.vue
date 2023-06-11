@@ -43,7 +43,7 @@ function getButtonState(): PrimaryButtonState {
 </script>
 <template>
     <div class="input-group mb-3 mt-3">
-        <select class="form-select form-select-sm fs-4"
+        <select class="form-select form-select-sm fs-5"
             @change="emit('selectTodoById', ($event.target as HTMLSelectElement).value)">
             <option></option>
             <option v-for="todo in activeTodos" v-bind:key="todo.id" v-bind:selected="todo.id === pomodoro.todoId"
