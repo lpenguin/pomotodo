@@ -5,7 +5,7 @@ import moment from 'moment';
 defineProps<{history: TodoHistoryItem[]}>();
 
 function formatTime(time: number): string {
-    return moment.utc(time * 1000).format('HH:mm:ss');
+    return moment.utc(time * 1000).format('mm:ss');
 }
 
 function formatDate(date: Date): string {
