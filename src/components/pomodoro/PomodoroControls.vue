@@ -18,6 +18,7 @@ const emit = defineEmits<{
     start: [],
     pause: [],
     next: [],
+    complete: [],
     selectTodoById: [id: string],
 }>();
 
@@ -51,11 +52,25 @@ function getButtonState(): PrimaryButtonState {
                 {{ todo.name }}
             </option>
         </select>
-        <button class="btn btn-primary btn-lg" @click="buttonState.onClick" style="min-width: 6rem;">
+
+        <button type="button" class="btn btn-primary btn-lg" style="min-width: 6rem;" @click="buttonState.onClick">
             {{ buttonState.text }}
         </button>
-        <button class="btn btn-outline-primary" @click="emit('next')">
-            <i class="bi bi-arrow-bar-right"></i>
+        <button type="button" class="btn btn-primary btn-lg dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown"
+            aria-expanded="false">
+            <span class="visually-hidden">Additional actions...</span>
         </button>
+        <ul class="dropdown-menu">
+            <li>
+                <button class="dropdown-item" @click="emit('next')">
+                    Skip
+                </button>
+            </li>
+            <li>
+                <button class="dropdown-item" @click="emit('complete')">
+                    Complete
+                </button>
+            </li>
+        </ul>
     </div>
 </template>

@@ -26,7 +26,7 @@ function onFormSubmit() {
       <div class="col-12">
         <div class="row justify-content-between">
           <div class="col-11">
-            <h5>{{ editedTodo.name }}</h5>
+            <h5>Edit task</h5>
           </div>
           <div class="col-1">
             <button type="button" class="btn-close" aria-label="Close" @click="() => emit('change', todo)"></button>
@@ -36,11 +36,11 @@ function onFormSubmit() {
 
 
       <div class="col-12">
-        <label for="inputName" class="form-label">Task name</label>
-        <input type="text" class="form-control" id="inputName" placeholder="Task name" v-model="editedTodo.name">
+        <label for="inputName" class="form-label">Name</label>
+        <input type="text" class="form-control" id="inputName" placeholder="Name" v-model="editedTodo.name">
       </div>
       <div class="col-md-6">
-        <label for="inputPomodoros" class="form-label">Pomodoros</label>
+        <label for="inputPomodoros" class="form-label">Completed pomodoros</label>
         <input type="number" min="0" class="form-control" id="inputPomodoros" v-model="editedTodo.pomodoros">
       </div>
       <div class="col-md-6">
@@ -61,5 +61,4 @@ function onFormSubmit() {
         </div>
       </div>
     </form>
-    <hr class="mb-2 mt-2" />
 </template>

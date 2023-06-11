@@ -63,6 +63,14 @@ export class PomodoroTimer {
         this.update();
     }
 
+    public complete(): Pomodoro {
+        this.pomodoroStore.update({
+            ...this.pomodoroStore.pomodoro,
+            timeElapsed: this.pomodoroStore.pomodoro.time,
+        });
+        return this.next();
+    }
+
     public next(): Pomodoro {
         this.timer.stop();
         const oldPomodoro = this.pomodoroStore.pomodoro;

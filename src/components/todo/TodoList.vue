@@ -40,7 +40,7 @@ function addTodo() {
 
         <form @submit.prevent="addTodo">
             <div class="input-group">
-                <input type="text" v-model="nextTodoName" class="form-control" placeholder="Name" />
+                <input type="text" v-model="nextTodoName" class="form-control" placeholder="Task name" />
                 <button type="submit" class="btn btn-primary">Add</button>
             </div>
         </form>

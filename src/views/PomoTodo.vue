@@ -51,8 +51,11 @@ watch(pomodoro, (pomodoro) => {
     <div class="container" style="max-width: 35rem;">
         <PomodoroView :pomodoro="pomodoroStore.pomodoro" />
 
-        <PomodoroControls :pomodoro="pomodoroStore.pomodoro" :active-todos="activeTodos" @start="e => pomodoroTimer.start()"
-            @pause="e => pomodoroTimer.stop()" @next="e => pomodoroTimer.next()"
+        <PomodoroControls :pomodoro="pomodoroStore.pomodoro" :active-todos="activeTodos" 
+            @start="e => pomodoroTimer.start()"
+            @pause="e => pomodoroTimer.stop()" 
+            @next="e => pomodoroTimer.next()"
+            @complete="e => pomodoroTimer.complete()"
             @selectTodoById="todoId => pomodoroStore.update({ ...pomodoroStore.pomodoro, todoId })" />
 
         <TodoList 

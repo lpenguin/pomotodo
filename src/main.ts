@@ -5,6 +5,7 @@ import 'bootstrap/scss/bootstrap-reboot.scss'
 import 'bootstrap/scss/bootstrap-grid.scss'
 import 'bootstrap/scss/bootstrap-utilities.scss'
 
+import 'bootstrap';
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
 
