@@ -22,7 +22,7 @@ function formatDate(date: Date): string {
 </script>
 <template>
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-8">
             <table class="table">
                 <thead>
                     <tr>
