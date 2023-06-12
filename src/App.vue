@@ -4,7 +4,7 @@ import { RouterLink, RouterView } from 'vue-router'
 
 <template>
   <header>
-    <span class="fs-1" style="font-siz1e: 6rem;">🍅</span>
+    <span class="fs-1" style="font-siz1e: 6rem; width: 4rem">🍅</span>
     <div class="wrapper">
       <nav>
         <RouterLink to="/">Todos</RouterLink>
