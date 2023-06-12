@@ -22,12 +22,13 @@ const historyStore = useHistoryStore();
 
 const activeTodos = computed(() => todoStore.getAll().filter(todo => !todo.isDone));
 
+// TODO: need to notify even if we not on the pomodoro page
 const pomodoroTimer = new PomodoroTimer({
     pomodoroStore,
     historyStore,
     todoStore,
     scheduleStore,
-    notificationManager: new NotificationManager()
+    notificationManager: new NotificationManager({closeTimeout: 5 * 60 * 1000})
 });
 
 onMounted(() => {
@@ -40,7 +41,6 @@ onUnmounted(() =>  {
 
 const { pomodoro } = storeToRefs(pomodoroStore);
 watch(pomodoro, (pomodoro) => {
-    console.log('pomodoro', pomodoro);
     const etaSeconds = pomodoro.time - pomodoro.timeElapsed;
     const eta = moment.utc(etaSeconds * 1000).format('mm:ss');
     document.title = `${eta} PomoTODO`;

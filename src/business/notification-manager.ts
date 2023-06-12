@@ -1,4 +1,10 @@
 export class NotificationManager {
+    private readonly closeTimeout: number;
+
+    constructor(options: {closeTimeout: number}) {
+        this.closeTimeout = options.closeTimeout;
+    }
+
     public requestPermission(): Promise<boolean> {
         if (!('Notification' in window)) {
             return Promise.resolve(false);
@@ -21,7 +27,7 @@ export class NotificationManager {
         return this.requestPermission().then((granted) => {
             if(granted) {
                 const n = new Notification(title, {body: text});
-                setTimeout(n.close.bind(n), 5000);
+                setTimeout(() => n.close(),  this.closeTimeout);
             }
         });
     }
